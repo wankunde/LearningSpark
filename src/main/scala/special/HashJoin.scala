@@ -49,9 +49,12 @@ object HashJoin {
 
     // simply joining the two RDDs will be slow as it requires
     // lots of communication
+
+    val a = System.currentTimeMillis()
     val joined = largeRDD.join(smallRDD)
     joined.collect().foreach(println)
-
+    val b = System.currentTimeMillis()
+    println(b - a)
     // If the smaller RDD is small enough we're better of with it not
     // being an RDD -- and we can implement a hash join by hand, effectively
     // broadcasting the hash table to each worker
@@ -59,10 +62,12 @@ object HashJoin {
     // NOTE: it may be tempting to use "collectAsMap" below instead of "collect",
     // and simplify the joiner accordingly, but that only works if the keys
     // are unique
+    val a1 = System.currentTimeMillis()
     val joiner = new HashJoiner(smallRDD.collect())
     val hashJoined = joiner.joinOnLeft(largeRDD)
     hashJoined.collect().foreach(println)
-
+    val b1 = System.currentTimeMillis()
+    println(b1 - a1)
 
   }
 }
