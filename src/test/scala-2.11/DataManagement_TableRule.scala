@@ -1,7 +1,6 @@
-import org.apache.commons.lang3.StringUtils
+
 import org.apache.spark.sql.{SparkSession}
 import org.json4s.JsonDSL._
-import org.json4s.jackson.JsonMethods._
 
 /**
   * 数据治理项目-表数据质量统计

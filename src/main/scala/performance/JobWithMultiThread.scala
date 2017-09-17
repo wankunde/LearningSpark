@@ -46,10 +46,10 @@ object JobWithMultiThread {
         df.rdd.saveAsTextFile(hdfsPath + "testfile4", classOf[LzopCodec])
       }
     })
+  }
 
-    def getInfo(hiveContext : HiveContext) : DataFrame = {
-      val sql = "select * from common.dict_hotel_ol"
-      hiveContext.sql(sql)
-    }
+  def getInfo(hiveContext : HiveContext) : DataFrame = {
+    val sql = "select * from common.dict_hotel_ol"
+    hiveContext.sql(sql)
   }
 }

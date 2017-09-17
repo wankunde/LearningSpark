@@ -46,5 +46,7 @@ object SimpleUDAF {
     data1.printSchema()
     data1.foreach(r => println(r))
 
+    customerDF.map(row => (row(0).toString, row.toString()))
+
   }
 }

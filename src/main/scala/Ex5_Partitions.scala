@@ -1,3 +1,4 @@
+import org.apache.spark.api.java.function.VoidFunction
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkContext, SparkConf}
 
@@ -75,12 +76,12 @@ object Ex5_Partitions {
     analyze(threePart)
     println("it is a " + threePart.getClass.getCanonicalName)
 
-    val twoPart = some.coalesce(2, true)
+    val twoPart = some.coalesce(3, true)
     println("subset in two partitions after a shuffle")
     analyze(twoPart)
     println("it is a " + twoPart.getClass.getCanonicalName)
 
-    val twoPartNoShuffle = some.coalesce(2, false)
+    val twoPartNoShuffle = some.coalesce(3, false)
     println("subset in two partitions without a shuffle")
     analyze(twoPartNoShuffle)
     println("it is a " + twoPartNoShuffle.getClass.getCanonicalName)
