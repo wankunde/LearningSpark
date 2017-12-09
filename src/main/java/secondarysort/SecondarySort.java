@@ -22,7 +22,7 @@ public class SecondarySort {
 
     public static void achieveByDataSet(){
 
-        JavaRDD<String> lines = spark.read().textFile("src/main/resources/data/shopPassager.txt").toJavaRDD(); //文件存储格式 公司ID, 商铺ID, 人流量
+        JavaRDD<String> lines = spark.read().textFile("src/main/resources/data/shopPassager.txt").toJavaRDD();//文件存储格式 公司ID, 商铺ID, 人流量
 
         JavaPairRDD<String, String> pairs = lines.mapToPair(line ->{
             String [] fields = line.split(",");
