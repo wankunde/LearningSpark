@@ -28,7 +28,6 @@ public class SecondarySort {
             String [] fields = line.split(",");
             return new Tuple2<>(fields[0] + "-" + fields[1], fields[2]);
         });
-//        JavaPairRDD rePartitionRdd = pairs.partitionBy(new HashPartitioner(4));
 
         JavaPairRDD rePartitionRdd =  pairs.groupByKey();
         System.out.println(rePartitionRdd.getClass().getName());
