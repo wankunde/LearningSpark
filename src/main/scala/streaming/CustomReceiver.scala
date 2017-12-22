@@ -16,8 +16,7 @@ import scala.language.postfixOps
 // it a 'good citizen' in terms of stopping in an orderly fashion when asked
 // to do so by the streaming context.
 //
-class CustomReceiver
-  extends Receiver[String](StorageLevel.MEMORY_ONLY)
+class CustomReceiver extends Receiver[String](StorageLevel.MEMORY_ONLY)
   with Serializable
 {
 
@@ -98,9 +97,16 @@ object CustomStreaming {
     // create the stream
     val stream = ssc.receiverStream(new CustomReceiver)
 
-    // register for data
+/*    // register for data
     stream.foreachRDD(r => {
       println(s"Items: ${r.count()} Partitions: ${r.partitions.size}")
+    })*/
+
+    // 输出每条记录
+    stream.foreachRDD(rdd => {
+      rdd.foreach(line =>{
+        println(line)
+      })
     })
 
     println("*** starting streaming")
