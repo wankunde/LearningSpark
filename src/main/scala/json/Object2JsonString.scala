@@ -1,9 +1,7 @@
 package json
-
-object JsonExample extends App {
-  import org.json4s.JsonDSL._
-  import org.json4s.jackson.JsonMethods._
-
+import org.json4s.JsonDSL._
+import org.json4s.jackson.JsonMethods._
+object Object2JsonString extends App {
   //第一部分，官网例子
   case class Winner(id: Long, numbers: List[Int])
   case class Lotto(id: Long, winningNumbers: List[Int], winners: List[Winner], drawDate: Option[java.util.Date])
@@ -22,6 +20,8 @@ object JsonExample extends App {
            ("numbers" -> w.numbers))}))
 
   println(compact(render(json)))
+  val a = fromJsonNode(asJsonNode(json))
+  println()
 
   //第二部分，参照官网例子写的
   case class StatInfo(min: String, max: String, nullCount: Long, notNullCount: Long, maxLength: Int)
@@ -42,4 +42,5 @@ object JsonExample extends App {
               ("maxLength" -> w.maxLength))}))
 
   println(compact(render(json1)))
+
 }

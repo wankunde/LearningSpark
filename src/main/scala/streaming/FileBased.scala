@@ -32,7 +32,12 @@ object FileBasedStreaming {
 
     // register for data
     stream.foreachRDD(r => {
-      println(r.count())
+//      println(r.count())
+      r.foreachPartition(it=>{
+        while (it.hasNext){
+          println(it.next())
+        }
+      })
     })
 
     // start streaming

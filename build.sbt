@@ -27,6 +27,13 @@ libraryDependencies += "com.hankcs" % "hanlp" % "portable-1.3.4"
 
 libraryDependencies += "com.alibaba" % "fastjson" % "1.2.7"
 
+libraryDependencies += "com.hadoop.gplcompression" % "hadoop-lzo" % "0.4.19"
+
+libraryDependencies += "com.aliyun.emr" % "emr-core" % "1.4.1"
+libraryDependencies += "com.aliyun.emr" % "emr-mns_2.10" % "1.4.1"
+
+libraryDependencies += "org.json4s" %% "json4s-jackson" % "{latestVersion}"
+
 // needed to make the hiveql examples run at least on Linux
 javaOptions in run += "-XX:MaxPermSize=128M"
 
