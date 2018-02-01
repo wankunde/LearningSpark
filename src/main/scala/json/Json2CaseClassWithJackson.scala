@@ -1,11 +1,36 @@
 package json
 
-import org.json4s.native.Serialization.{read, write}
+import org.json4s.jackson.JsonMethods._
 /***
   * http://json4s.org/
   */
-object Json2CaseClass extends App {
+object Json2CaseClassWithJackson extends App {
   implicit val formats = org.json4s.DefaultFormats
+
+  /* case class Child(name: String, age: Int)
+   case class Address(street: String, city: String)
+   case class Person(name: String, address: Address, children: List[Child])
+   val jsonStr = parse("""
+       { "name": "joe",
+         "address": {
+           "street": "Bulevard",
+           "city": "Helsinki"
+         },
+         "children": [
+           {
+             "name": "Mary",
+             "age": 5
+           },
+           {
+             "name": "Mazy",
+             "age": 3
+           }
+         ]
+       }
+     """)
+
+   val person = jsonStr.extract[Person]
+   println(person)*/
 
   case class SkuInfo(sku_id: String, sku_action: Integer) // 字段名称要与json的key值相同
   case class IOTPoint(x: Integer, y: Integer, enter_time: Integer, leave_time: Integer, sku_list: List[SkuInfo])
@@ -19,10 +44,6 @@ object Json2CaseClass extends App {
     "{\"sku_id\":\"095cceae0a77498d9bfdce20a938daca\",\"sku_action\":2}," +
     "{\"sku_id\":\"18b110a16aa44aefadc0c4d20ec6133f\",\"sku_action\":0}," +
     "{\"sku_id\":\"7a478b19f10b489c9bb3a7b3d14346b0\",\"sku_action\":0}]}]}"
-
-//  val iotBehaviorTrace:IOTBehaviorTrace = parse(s).extract[IOTBehaviorTrace]
-  val iotBehaviorTrace:IOTBehaviorTrace =read[IOTBehaviorTrace](s)
+  val iotBehaviorTrace:IOTBehaviorTrace = parse(s).extract[IOTBehaviorTrace]
   println(iotBehaviorTrace)
-
-  println(write(iotBehaviorTrace))
 }
