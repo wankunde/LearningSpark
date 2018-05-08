@@ -9,6 +9,7 @@ object MapTest {
                         "yellow" -> "#FFFF00",
                         "red" -> "#FF0001")
 
+
       //  ++ 作为运算符
       var colors = colors1 ++ colors2
       println( "colors1 ++ colors2 : " + colors )
